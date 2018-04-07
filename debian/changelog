@@ -1,6 +1,6 @@
-wasta-custom-chinese (1.0.1) xenial; urgency=medium
+wasta-custom-chinese (1.0.2) xenial; urgency=medium
 
-  * debian/install: commenting out unused folders
+  * cleanup of initial release
 
  -- Rik Shaw <rikshaw76@gmail.com>  Sat, 07 Apr 2018 16:41:05 +0300
 
