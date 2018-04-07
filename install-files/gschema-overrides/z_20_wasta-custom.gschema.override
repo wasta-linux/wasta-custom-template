@@ -1,4 +1,4 @@
-# z_20_wasta_custom.gschema.override
+# z_20_wasta-custom.gschema.override
 #
 #   If same key overridden in 2 files, "last wins" regarding filenames
 #       (so a "z_10_*" filename would win over a "10_*" filename)
@@ -12,10 +12,10 @@
 # ==============================================================================
 
 [org.nemo.preferences]
-enable-delete = true
+#enable-delete = true
 
 [org.cinnamon.settings-daemon.peripherals.touchpad]
-tap-to-click = false
+#tap-to-click = false
 
 [org.freedesktop.ibus.general]
 #preload-engines = ['xkb:us::eng', '/usr/share/kmfl/GE.kmn']

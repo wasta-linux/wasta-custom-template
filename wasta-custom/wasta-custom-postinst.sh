@@ -25,7 +25,6 @@ then
   exit 1
 fi
 
-
 # ------------------------------------------------------------------------------
 # Initial Setup
 # ------------------------------------------------------------------------------
@@ -85,15 +84,15 @@ fi
 # Disable software update checking / reduce bandwidth for apt
 # ------------------------------------------------------------------------------
 # Automatically check for updates: daily(1), week(7), two weeks(14), never(0)
-if [ -e /etc/apt/apt.conf.d/10periodic ]; then
-  sed -i -e '/APT::Periodic::Update-Package-Lists/ s|\".*\"|\"0\"|' \
-      /etc/apt/apt.conf.d/10periodic
-fi
-if [ -e /etc/apt/apt.conf.d/20auto-upgrades ]; then
-  sed -i -e '/APT::Periodic::Update-Package-Lists/ s|\".*\"|\"0\"|' \
-         -e '/APT::Periodic::Unattended-Upgrade/   s|\".*\"|\"0\"|' \
-      /etc/apt/apt.conf.d/20auto-upgrades
-fi
+#if [ -e /etc/apt/apt.conf.d/10periodic ]; then
+#  sed -i -e '/APT::Periodic::Update-Package-Lists/ s|\".*\"|\"0\"|' \
+#      /etc/apt/apt.conf.d/10periodic
+#fi
+#if [ -e /etc/apt/apt.conf.d/20auto-upgrades ]; then
+#  sed -i -e '/APT::Periodic::Update-Package-Lists/ s|\".*\"|\"0\"|' \
+#         -e '/APT::Periodic::Unattended-Upgrade/   s|\".*\"|\"0\"|' \
+#      /etc/apt/apt.conf.d/20auto-upgrades
+#fi
 
 # Notify me of a new Ubuntu version: never, normal, lts
 if [ -e /etc/update-manager/release-upgrades ]; then
@@ -113,7 +112,7 @@ LO_54=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-4-*)
 LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
 if ! [ -e "${LO_6X[0]}" ] \
 && ! [ -e "${LO_54[0]}" ] \
-&& ! [ -e "${REPO_SERIES}" == "bionic" ]; then
+&& ! [ "${REPO_SERIES}" == "bionic" ]; then
   echo "LibreOffice 5.4 PPA not found.  Adding it..."
 
   #key already added by wasta, so no need to use the internet with add-apt-repository
@@ -168,13 +167,12 @@ else
   echo "WARNING: could not find LibreOffice install..."
 fi
 
-
 # ------------------------------------------------------------------------------
 # Schema overrides - set customized defaults for gnome software
 # !! Not removed if wasta-custom-${BRANCH_ID} is uninstalled !!
 # ------------------------------------------------------------------------------
 SCHEMA_DIR=/usr/share/glib-2.0/schemas
-RUN_COMPILE=NO
+RUN_COMPILE=YES
 if [ -x "${SCHEMA_DIR}/" ]; then
   for OVERRIDE_FILE in "${RESOURCE_DIR}/"*.gschema.override ; do
     if [ -f "${OVERRIDE_FILE}" ]; then
@@ -222,47 +220,6 @@ if [ "$REBUILD_CACHE" == "YES" ]; then
 fi
 
 # ------------------------------------------------------------------------------
-# Ensure that a normal user can connect to new wireless networks
-#   -caveat - users can see wireless passwords.
-#   -caveat - this is not just for wireless, but any network configuration.
-# ------------------------------------------------------------------------------
-PKLA=/etc/polkit-1/localauthority/50-local.d/org.freedesktop.NetworkManager.pkla
-if ! [ -e "$PKLA" ]; then
-  #Allow users to connect to wireless networks through the discovered SSID
-  #overriding settings in /usr/share/polkit-1/actions
-  echo && echo "updating /etc/polkit-1/ to allow users access to wireless networks"
-  cat << EOF > "$PKLA"
-[OverRide policy: allow non-admins to easily connect to wireless networks]
-    Identity=unix-group:*
-    Action=org.freedesktop.NetworkManager.settings.modify.system
-    ResultActive=yes
-EOF
-else
-  [ "$DEBUG"] && echo "DEBUG: polkit for wireless access already exists"
-fi
-
-# ------------------------------------------------------------------------------
-# Allow a normal user to run wasta-offline
-#   -caveat - a malicious user could use this to point to replacement .debs
-# ------------------------------------------------------------------------------
-PKLA=/etc/polkit-1/localauthority/50-local.d/org.wasta.apps.wasta-offline.pkla
-if ! [ -e "$PKLA" ]; then
-  #Allow regular users to run wasta-offline
-  #overriding settings in /usr/share/polkit-1/actions
-  echo && echo "updating /etc/polkit-1/ to allow users to run wasta-offline"
-  cat << EOF > "$PKLA"
-[OverRide policy: allow non-admins to run wasta-offline]
-    Identity=unix-group:*
-    Action=org.wasta.apps.wasta-offline
-    ResultActive=yes
-    ResultAny=yes
-EOF
-else
-  [ "$DEBUG"] && echo "DEBUG: polkit for wasta-offline  already exists"
-fi
-
-
-# ------------------------------------------------------------------------------
 # KMFL: restart ibus if keyboards added
 # ------------------------------------------------------------------------------
 RESTART_IBUS=YES
@@ -286,7 +243,6 @@ paperconfig -p a4
 #update-locale LANG="fr_FR.UTF-8"
 #update-locale LANGUAGE="fr_FR"
 #update-locale LC_ALL="fr_FR.UTF-8"
-
 
 # ------------------------------------------------------------------------------
 # Ensure SSH keys have been regenerated after remastersys
