@@ -1,0 +1,11 @@
+wasta-custom-template (1.0) xenial; urgency=low
+
+  * Updated for 16.04 standards
+
+ -- Justin Luth <jluth@mail.com>  Tue, 26 Dec 2017 13:01:36 -0500
+
+wasta-custom-template (0.1) precise; urgency=low
+
+  * Initial Release.
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 21 Oct 2013 13:01:36 -0500

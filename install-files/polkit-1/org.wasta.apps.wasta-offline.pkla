@@ -1,0 +1,8 @@
+# Allow a normal user to run wasta-offline
+#   -caveat - a malicious user could use this to point to replacement .debs
+
+[OverRide policy: allow non-admins to run wasta-offline]
+    Identity=unix-group:*
+    Action=org.wasta.apps.wasta-offline
+    ResultActive=yes
+    ResultAny=yes

@@ -1,0 +1,8 @@
+# Ensure that a normal user can connect to new wireless networks
+#   -caveat - users can see wireless passwords.
+#   -caveat - this is not just for wireless, but any network configuration.
+
+[OverRide policy: allow non-admins to easily connect to wireless networks]
+    Identity=unix-group:users
+    Action=org.freedesktop.NetworkManager.settings.modify.system
+    ResultActive=yes
