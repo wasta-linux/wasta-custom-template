@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==============================================================================
-# wasta-custom-${BRANCH_ID}-postinst.sh
+# wasta-custom-chinese-postinst.sh
 #
 #   This script is automatically run by the postinst configure step on
 #       installation of wasta-custom-${BRANCH_ID}.  It can be manually re-run, but is
@@ -9,6 +9,7 @@
 #
 #   2013-12-03 rik: initial script
 #   2017-12-27 jcl: rework - change LO extension to bundle method, not shared
+#   2018-04-07 rik: initial postinst for wasta-custom-chinese
 #
 # ==============================================================================
 
@@ -29,7 +30,7 @@ fi
 # Initial Setup
 # ------------------------------------------------------------------------------
 
-BRANCH_ID=template
+BRANCH_ID=chinese
 RESOURCE_DIR=/usr/share/wasta-custom-${BRANCH_ID}/resources
 DEBUG=""  #set to yes to enable testing helps
 
@@ -97,12 +98,6 @@ fi
 # Notify me of a new Ubuntu version: never, normal, lts
 if [ -e /etc/update-manager/release-upgrades ]; then
   sed -i -e 's|^Prompt=.*|Prompt=never|' /etc/update-manager/release-upgrades
-fi
-
-if ! [ -e /etc/apt/apt.conf.d/99translations ]; then
-  cat << EOF >  /etc/apt/apt.conf.d/99translations
-Acquire::Languages \"none\";
-EOF
 fi
 
 # ------------------------------------------------------------------------------

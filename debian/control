@@ -1,14 +1,14 @@
-Source: wasta-custom-template
+Source: wasta-custom-chinese
 Section: utils
 Priority: optional
-Maintainer: Rik Shaw <rikshaw76@gmail.com>
+Maintainer: Justin Luth <jluth@mail.com>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.7
 
-Package: wasta-custom-template
+Package: wasta-custom-chinese
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends:
 Suggests:
-Description: Wasta-Linux BRANCH_ID customization
- Sets up machine for Wasta-Linux BRANCH_ID use.
+Description: Wasta-Linux Chinese customization
+ Sets up machine for Wasta-Linux Chinese use.

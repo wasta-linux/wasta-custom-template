@@ -1,4 +1,6 @@
-# z_20_wasta-custom.gschema.override
+# ==============================================================================
+#
+# z_20_wasta-custom-chinese.gschema.override
 #
 #   If same key overridden in 2 files, "last wins" regarding filenames
 #       (so a "z_10_*" filename would win over a "10_*" filename)
@@ -19,4 +21,4 @@
 
 [org.freedesktop.ibus.general]
 #preload-engines = ['xkb:us::eng', '/usr/share/kmfl/GE.kmn']
-#use-system-keyboard-layout = true
+#use-system-keyboard-layout = 
