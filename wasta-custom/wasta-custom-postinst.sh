@@ -160,7 +160,7 @@ if [ -x "${LO_EXTENSION_DIR}/" ]; then
       unzip -q -d "${LO_EXTENSION_DIR}/${LO_EXTENSION}" \
                   "${RESOURCE_DIR}/${LO_EXTENSION}.oxt"
     else
-      [ "$DEBUG"] && echo "DEBUG: no .oxt files to install"
+      [ "$DEBUG" ] && echo "DEBUG: no .oxt files to install"
     fi
   done
 else
@@ -186,7 +186,7 @@ if [ -x "${SCHEMA_DIR}/" ]; then
       chmod 644 "${SCHEMA_DIR}/${OVERRIDE_FILE}"
       RUN_COMPILE=YES
     else
-      [ "$DEBUG"] && echo "DEBUG: no .gschema.override files to install"
+      [ "$DEBUG" ] && echo "DEBUG: no .gschema.override files to install"
     fi
   done
 else
@@ -195,7 +195,7 @@ fi
 
 if [ "${RUN_COMPILE^^}" == "YES" ]; then
   echo && echo "Compile changed gschema default preferences"
-  [ "$DEBUG"] && glib-compile-schemas --strict ${SCHEMA_DIR}/
+  [ "$DEBUG" ] && glib-compile-schemas --strict ${SCHEMA_DIR}/
   glib-compile-schemas ${SCHEMA_DIR}/
 fi
 
@@ -212,7 +212,7 @@ if [ -e "${TTF[0]}" ]; then
   chmod -R +r "/usr/share/fonts/truetype/${BRANCH_ID}"
   REBUILD_CACHE=YES
 else
-  [ "$DEBUG"] && echo "DEBUG: no fonts to install"
+  [ "$DEBUG" ] && echo "DEBUG: no fonts to install"
 fi
 
 if [ "${REBUILD_CACHE^^}" == "YES" ]; then
