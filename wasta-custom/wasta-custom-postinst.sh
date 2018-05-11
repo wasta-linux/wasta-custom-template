@@ -177,13 +177,13 @@ if [ -x "${SCHEMA_DIR}/" ]; then
   for OVERRIDE_FILE in "${RESOURCE_DIR}/"*.gschema.override ; do
     if [ -f "${OVERRIDE_FILE}" ]; then
       OVERRIDE=$(basename --suffix=.gschema.override ${OVERRIDE_FILE})
-      if [ -e "${SCHEMA_DIR}/${OVERRIDE}.gschema.override" ]; then
+      if [ -e "${SCHEMA_DIR}/${OVERRIDE_FILE}" ]; then
         echo "  Replacing ${OVERRIDE} override"
       else
         echo "  Adding ${OVERRIDE} override"
       fi
-      cp "${RESOURCE_DIR}/${OVERRIDE}.gschema.override"  "${SCHEMA_DIR}/"
-      chmod 644 "${SCHEMA_DIR}/${OVERRIDE}.gschema.override"
+      cp "${RESOURCE_DIR}/${OVERRIDE_FILE}"  "${SCHEMA_DIR}/"
+      chmod 644 "${SCHEMA_DIR}/${OVERRIDE_FILE}"
       RUN_COMPILE=YES
     else
       [ "$DEBUG"] && echo "DEBUG: no .gschema.override files to install"
@@ -215,7 +215,7 @@ else
   [ "$DEBUG"] && echo "DEBUG: no fonts to install"
 fi
 
-if [ "$REBUILD_CACHE" == "YES" ]; then
+if [ "${REBUILD_CACHE^^}" == "YES" ]; then
   fc-cache -fs
 fi
 
@@ -223,7 +223,7 @@ fi
 # KMFL: restart ibus if keyboards added
 # ------------------------------------------------------------------------------
 RESTART_IBUS=YES
-[ "$RESTART_IBUS" == "YES" ] && [ $(which ibus-daemon) ] && ibus-daemon -xrd
+[ "${RESTART_IBUS^^}" == "YES" ] && [ $(which ibus-daemon) ] && ibus-daemon -xrd
 
 # ------------------------------------------------------------------------------
 # Set system-wide Paper Size
