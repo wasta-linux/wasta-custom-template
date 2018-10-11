@@ -8,7 +8,7 @@ gschema-overrides: copy each override into the gschema-overrides folder
 
 kmfl: copy .kmn files into this folder, and the .bmp files into icons
   -ENSURE that the .kmn extension is lower-case!!!
-  -post-install script already assumes that ibus should be restarted
+  -user needs to restart ibus-daemon (at next logout usually) to see changes
   -perhaps ensure ibus-kmfl is installed via debian/control Recommends
 
 libreoffice: unzip each OXT into a separate folder under the extensions folder

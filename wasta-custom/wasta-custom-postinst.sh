@@ -220,12 +220,6 @@ if [ "${REBUILD_CACHE^^}" == "YES" ]; then
 fi
 
 # ------------------------------------------------------------------------------
-# KMFL: restart ibus if keyboards added
-# ------------------------------------------------------------------------------
-RESTART_IBUS=YES
-[ "${RESTART_IBUS^^}" == "YES" ] && [ $(which ibus-daemon) ] && ibus-daemon -xrd
-
-# ------------------------------------------------------------------------------
 # Set system-wide Paper Size
 # ------------------------------------------------------------------------------
 # Note: This sets /etc/papersize.  However, many apps do not look at this
