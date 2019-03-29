@@ -1,3 +1,9 @@
+wasta-custom-moz (0.9.1) bionic; urgency=medium
+
+  * debian/control: add language-pack-pt recommends
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 29 Mar 2019 16:23:20 +0300
+
 wasta-custom-moz (0.9.0) bionic; urgency=medium
 
   * initial release
