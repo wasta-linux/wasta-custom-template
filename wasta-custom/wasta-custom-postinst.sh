@@ -189,6 +189,8 @@ for CURRENT_USER in $LOCAL_USERS;
 do
     # put per-user commands below, using following syntax:
     #    su -l "$CURRENT_USER" -c "command to execute"
+    # NOTE: do NOT delete below 'echo': if nothing is in the 'do' it will error
+    echo "*** executing user commands for $CURRENT_USER ***"
 done
 
 # ------------------------------------------------------------------------------

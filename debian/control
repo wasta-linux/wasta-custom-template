@@ -9,6 +9,6 @@ Homepage: https://github.com/wasta-linux/wasta-custom-template
 Package: wasta-custom-moz
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: goldendict, sword-text-portuguese, xiphos
+Recommends: goldendict, sword-text-portuguese, wasta-sword-modules, xiphos
 Description: Wasta-Linux Mozambique customization
  Sets up machine for Wasta-Linux Mozambique use.
