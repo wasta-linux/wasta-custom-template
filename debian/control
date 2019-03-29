@@ -1,14 +1,14 @@
-Source: wasta-custom-template
+Source: wasta-custom-moz
 Section: utils
 Priority: optional
 Maintainer: Rik Shaw <rikshaw76@gmail.com>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.7
+Homepage: https://github.com/wasta-linux/wasta-custom-template
 
-Package: wasta-custom-template
+Package: wasta-custom-moz
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends:
-Suggests:
-Description: Wasta-Linux BRANCH_ID customization
- Sets up machine for Wasta-Linux BRANCH_ID use.
+Recommends: goldendict, sword-text-portuguese, xiphos
+Description: Wasta-Linux Mozambique customization
+ Sets up machine for Wasta-Linux Mozambique use.

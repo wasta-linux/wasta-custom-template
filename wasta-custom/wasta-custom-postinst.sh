@@ -9,6 +9,8 @@
 #
 #   2013-12-03 rik: initial script
 #   2017-12-27 jcl: rework - change LO extension to bundle method, not shared
+#   2018-05-02 rik: initial wasta-custom-moz script
+#   2019-03-29 rik: updates to wasta-custom-moz
 #
 # ==============================================================================
 
@@ -29,7 +31,7 @@ fi
 # Initial Setup
 # ------------------------------------------------------------------------------
 
-BRANCH_ID=template
+BRANCH_ID=moz
 RESOURCE_DIR=/usr/share/wasta-custom-${BRANCH_ID}/resources
 DEBUG=""  #set to yes to enable testing helps
 
@@ -108,18 +110,16 @@ fi
 # ------------------------------------------------------------------------------
 # LibreOffice PPA management
 # ------------------------------------------------------------------------------
-LO_54=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-4-*)
-LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
-if ! [ -e "${LO_6X[0]}" ] \
-&& ! [ -e "${LO_54[0]}" ] \
-&& ! [ "${REPO_SERIES}" == "bionic" ]; then
-  echo "LibreOffice 5.4 PPA not found.  Adding it..."
+LO_61=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-1-*)
+if ! [ -e "${LO_61[0]}" ] \
+&& ! [ "${REPO_SERIES}" == "precise" ]; then
+  echo "LibreOffice 6.1 PPA not found. Adding it..."
 
   #key already added by wasta, so no need to use the internet with add-apt-repository
-  #add-apt-repository --yes ppa:libreoffice/libreoffice-5-4
-  cat << EOF >  $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-4-$REPO_SERIES.list
-deb http://ppa.launchpad.net/libreoffice/libreoffice-5-4/ubuntu $REPO_SERIES main
-# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-5-4/ubuntu $REPO_SERIES main
+  #add-apt-repository --yes ppa:libreoffice/libreoffice-6-1
+  cat << EOF >  $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$REPO_SERIES.list
+deb http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu $REPO_SERIES main
+# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu $REPO_SERIES main
 EOF
 fi
 
@@ -142,62 +142,14 @@ if [ -e "${LO_6X[0]}" ]; then
 fi
 
 # ------------------------------------------------------------------------------
-# LibreOffice Extensions - bundle install (for all users)
-# !! Not removed if wasta-custom-${BRANCH_ID} is uninstalled !!
-#   "unopkg list --bundled" - exists since 2010
-# ------------------------------------------------------------------------------
-LO_EXTENSION_DIR=/usr/lib/libreoffice/share/extensions
-if [ -x "${LO_EXTENSION_DIR}/" ]; then
-  for EXT_FILE in "${RESOURCE_DIR}/"*.oxt ; do
-    if [ -f "${EXT_FILE}" ]; then
-      LO_EXTENSION=$(basename --suffix=.oxt ${EXT_FILE})
-      if [ -e "${LO_EXTENSION_DIR}/${LO_EXTENSION}" ]; then
-        echo "  Replacing ${LO_EXTENSION} extension"
-        rm -rf "${LO_EXTENSION_DIR}/${LO_EXTENSION}"
-      else
-        echo "  Adding ${LO_EXTENSION} extension"
-      fi
-      unzip -q -d "${LO_EXTENSION_DIR}/${LO_EXTENSION}" \
-                  "${RESOURCE_DIR}/${LO_EXTENSION}.oxt"
-    else
-      [ "$DEBUG"] && echo "DEBUG: no .oxt files to install"
-    fi
-  done
-else
-  echo "WARNING: could not find LibreOffice install..."
-fi
-
-# ------------------------------------------------------------------------------
 # Schema overrides - set customized defaults for gnome software
 # !! Not removed if wasta-custom-${BRANCH_ID} is uninstalled !!
 # ------------------------------------------------------------------------------
 SCHEMA_DIR=/usr/share/glib-2.0/schemas
-RUN_COMPILE=YES
-if [ -x "${SCHEMA_DIR}/" ]; then
-  for OVERRIDE_FILE in "${RESOURCE_DIR}/"*.gschema.override ; do
-    if [ -f "${OVERRIDE_FILE}" ]; then
-      OVERRIDE=$(basename --suffix=.gschema.override ${OVERRIDE_FILE})
-      if [ -e "${SCHEMA_DIR}/${OVERRIDE}.gschema.override" ]; then
-        echo "  Replacing ${OVERRIDE} override"
-      else
-        echo "  Adding ${OVERRIDE} override"
-      fi
-      cp "${RESOURCE_DIR}/${OVERRIDE}.gschema.override"  "${SCHEMA_DIR}/"
-      chmod 644 "${SCHEMA_DIR}/${OVERRIDE}.gschema.override"
-      RUN_COMPILE=YES
-    else
-      [ "$DEBUG"] && echo "DEBUG: no .gschema.override files to install"
-    fi
-  done
-else
-  echo "WARNING: could not find glib schema dir..."
-fi
 
-if [ "${RUN_COMPILE^^}" == "YES" ]; then
-  echo && echo "Compile changed gschema default preferences"
-  [ "$DEBUG"] && glib-compile-schemas --strict ${SCHEMA_DIR}/
-  glib-compile-schemas ${SCHEMA_DIR}/
-fi
+echo && echo "*** Compile changed gschema default preferences"
+[ "$DEBUG"] && glib-compile-schemas --strict ${SCHEMA_DIR}/
+glib-compile-schemas ${SCHEMA_DIR}/
 
 # ------------------------------------------------------------------------------
 # Install fonts
@@ -220,10 +172,69 @@ if [ "$REBUILD_CACHE" == "YES" ]; then
 fi
 
 # ------------------------------------------------------------------------------
-# KMFL: restart ibus if keyboards added
+# Per User Adjustments
 # ------------------------------------------------------------------------------
-RESTART_IBUS=YES
-[ "$RESTART_IBUS" == "YES" ] && [ $(which ibus-daemon) ] && ibus-daemon -xrd
+LOCAL_USERS=""
+for USER_FOLDER in $(ls -1 home)
+do
+    # if user is in /etc/passwd then it is a 'real user' as opposed to
+    # something like wasta-remastersys
+    if [ "$(grep $USER_FOLDER /etc/passwd)" ];
+    then
+        LOCAL_USERS+="$USER_FOLDER "
+    fi
+done
+
+for CURRENT_USER in $LOCAL_USERS;
+do
+    # --------------------------------------------------------------------------
+    # goldendict add wasta-custom-${BRANCH_ID} path for dictionaries (all users)
+    # --------------------------------------------------------------------------
+    echo
+    echo "*** Ensuring Portuguese <==> English Dictionaries Installed: $CURRENT_USER"
+    echo
+    # touch file first to make sure exist
+    mkdir -p /home/$CURRENT_USER/.goldendict
+    touch /home/$CURRENT_USER/.goldendict/config
+    # ensure user file owned by user
+    chown -R $CURRENT_USER:$CURRENT_USER /home/$CURRENT_USER/.goldendict
+
+    # FIRST delete existing element
+    # rik: can't get xmlstarlet to delete only the right path, so just using sed
+    #xmlstarlet ed --inplace --delete 'config/paths/path[path="/usr/share/wasta-custom-ssg/resources/   goldendict"]'     /home/*/.goldendict/config
+    su -l "$CURRENT_USER" -c "sed -i -e '\@usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict@d' /home/$CURRENT_USER/.goldendict/config"
+
+    # create it with element name pathTMP, then can apply attr and then rename to path
+    su -l "$CURRENT_USER" -c "xmlstarlet ed --inplace -s 'config/paths' -t elem -n 'pathTMP' \
+        -v '/usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict' \
+        -s 'config/paths/pathTMP' -t attr -n 'recursive' -v '0' \
+        -r 'config/paths/pathTMP' -v path \
+        /home/$CURRENT_USER/.goldendict/config"
+done
+
+# ------------------------------------------------------------------------------
+# goldendict add wasta-custom-${BRANCH_ID} path for dictionaries (Default User)
+# ------------------------------------------------------------------------------
+echo
+echo "*** Ensuring Portuguese <==> English Dictionaries Installed: Default User"
+echo
+
+# touch file first to make sure exist
+mkdir -p /etc/skel/.goldendict
+touch /etc/skel/.goldendict/config
+
+# FIRST delete existing element
+# rik: can't get xmlstarlet to delete only the right path, so just using sed
+#xmlstarlet ed --inplace --delete 'config/paths/path[path="/usr/share/wasta-custom-ssg/resources/   goldendict"]'     /home/*/.goldendict/config
+sed -i -e "\@usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict@d" \
+    /etc/skel/.goldendict/config
+
+# create it with element name pathTMP, then can apply attr and then rename to path
+xmlstarlet ed --inplace -s 'config/paths' -t elem -n 'pathTMP' \
+    -v "/usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict" \
+    -s 'config/paths/pathTMP' -t attr -n 'recursive' -v '0' \
+    -r 'config/paths/pathTMP' -v path \
+    /etc/skel/.goldendict/config
 
 # ------------------------------------------------------------------------------
 # Set system-wide Paper Size
@@ -236,30 +247,13 @@ paperconfig -p a4
 # Change system-wide locale settings
 # ------------------------------------------------------------------------------
 
-# First we need to generate the newly-downloaded French (France) locale
-#locale-gen fr_FR.UTF-8
+# First we need to generate the newly-downloaded Portugese locale
+locale-gen pt_FR.UTF-8
 
 # Now we can make specific locale updates
-#update-locale LANG="fr_FR.UTF-8"
-#update-locale LANGUAGE="fr_FR"
-#update-locale LC_ALL="fr_FR.UTF-8"
-
-# ------------------------------------------------------------------------------
-# Ensure SSH keys have been regenerated after remastersys
-#     16.04: ssh_host_dsa_key
-#     18.04: ssh_host_ecdsa_key
-# ------------------------------------------------------------------------------
-dpkg --status openssh-server 1>/dev/null 2>&1
-if [ $? == 0 ] \
-&& ! [ -e /etc/ssh/ssh_host_dsa_key ] \
-&& ! [ -e /etc/ssh/ssh_host_ecdsa_key ]; then
-  dpkg-reconfigure openssh-server  #tested - works without conflicting with apt-get install. Also OK with apt-get update?
-
-  if [ "$(pwd)" != "/" ]; then
-    # SSH restart since probably running interactively"
-    /etc/init.d/ssh restart
-  fi
-fi
+update-locale LANG="pt_PT.UTF-8"
+update-locale LANGUAGE="pt_PT"
+update-locale LC_ALL="pt_PT.UTF-8"
 
 # ------------------------------------------------------------------------------
 # Finished
