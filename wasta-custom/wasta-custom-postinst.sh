@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # ==============================================================================
-# wasta-custom-${BRANCH_ID}-postinst.sh
+# wasta-custom-postinst.sh
 #
 #   This script is automatically run by the postinst configure step on
-#       installation of wasta-custom-${BRANCH_ID}.  It can be manually re-run, but is
+#       installation of wasta-custom.  It can be manually re-run, but is
 #       only intended to be run at package installation.
 #
 #   2013-12-03 rik: initial script
@@ -187,54 +187,9 @@ done
 
 for CURRENT_USER in $LOCAL_USERS;
 do
-    # --------------------------------------------------------------------------
-    # goldendict add wasta-custom-${BRANCH_ID} path for dictionaries (all users)
-    # --------------------------------------------------------------------------
-    echo
-    echo "*** Ensuring Portuguese <==> English Dictionaries Installed: $CURRENT_USER"
-    echo
-    # touch file first to make sure exist
-    mkdir -p /home/$CURRENT_USER/.goldendict
-    touch /home/$CURRENT_USER/.goldendict/config
-    # ensure user file owned by user
-    chown -R $CURRENT_USER:$CURRENT_USER /home/$CURRENT_USER/.goldendict
-
-    # FIRST delete existing element
-    # rik: can't get xmlstarlet to delete only the right path, so just using sed
-    #xmlstarlet ed --inplace --delete 'config/paths/path[path="/usr/share/wasta-custom-ssg/resources/   goldendict"]'     /home/*/.goldendict/config
-    su -l "$CURRENT_USER" -c "sed -i -e '\@usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict@d' /home/$CURRENT_USER/.goldendict/config"
-
-    # create it with element name pathTMP, then can apply attr and then rename to path
-    su -l "$CURRENT_USER" -c "xmlstarlet ed --inplace -s 'config/paths' -t elem -n 'pathTMP' \
-        -v '/usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict' \
-        -s 'config/paths/pathTMP' -t attr -n 'recursive' -v '0' \
-        -r 'config/paths/pathTMP' -v path \
-        /home/$CURRENT_USER/.goldendict/config"
+    # put per-user commands below, using following syntax:
+    #    su -l "$CURRENT_USER" -c "command to execute"
 done
-
-# ------------------------------------------------------------------------------
-# goldendict add wasta-custom-${BRANCH_ID} path for dictionaries (Default User)
-# ------------------------------------------------------------------------------
-echo
-echo "*** Ensuring Portuguese <==> English Dictionaries Installed: Default User"
-echo
-
-# touch file first to make sure exist
-mkdir -p /etc/skel/.goldendict
-touch /etc/skel/.goldendict/config
-
-# FIRST delete existing element
-# rik: can't get xmlstarlet to delete only the right path, so just using sed
-#xmlstarlet ed --inplace --delete 'config/paths/path[path="/usr/share/wasta-custom-ssg/resources/   goldendict"]'     /home/*/.goldendict/config
-sed -i -e "\@usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict@d" \
-    /etc/skel/.goldendict/config
-
-# create it with element name pathTMP, then can apply attr and then rename to path
-xmlstarlet ed --inplace -s 'config/paths' -t elem -n 'pathTMP' \
-    -v "/usr/share/wasta-custom-${BRANCH_ID}/resources/goldendict" \
-    -s 'config/paths/pathTMP' -t attr -n 'recursive' -v '0' \
-    -r 'config/paths/pathTMP' -v path \
-    /etc/skel/.goldendict/config
 
 # ------------------------------------------------------------------------------
 # Set system-wide Paper Size
@@ -247,8 +202,8 @@ paperconfig -p a4
 # Change system-wide locale settings
 # ------------------------------------------------------------------------------
 
-# First we need to generate the newly-downloaded Portugese locale
-locale-gen pt_FR.UTF-8
+# First we need to generate the newly-downloaded Portuguese locale
+locale-gen pt_PT.UTF-8
 
 # Now we can make specific locale updates
 update-locale LANG="pt_PT.UTF-8"
