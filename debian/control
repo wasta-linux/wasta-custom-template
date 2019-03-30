@@ -9,6 +9,6 @@ Homepage: https://github.com/wasta-linux/wasta-custom-template
 Package: wasta-custom-moz
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: goldendict, language-pack-pt, sword-text-portuguese, wasta-sword-modules, xiphos
+Recommends: goldendict, firefox-locale-pt, gimp-help-pt, gnome-getting-started-docs-pt, gnome-user-docs-pt, hunspell-pt-br, hunspell-pt-pt, hyphen-pt-br, hyphen-pt-pt, language-pack-gnome-pt, libreoffice-help-pt, libreoffice-help-pt-br, libreoffice-l10n-pt, libreoffice-l10n-pt-br, mythes-pt-pt, sword-text-portuguese, thunderbird-locale-pt, thunderbird-locale-pt-br, thunderbird-locale-pt-pt, wasta-sword-modules, wbrazilian, wportuguese, xiphos
 Description: Wasta-Linux Mozambique customization
  Sets up machine for Wasta-Linux Mozambique use.

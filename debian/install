@@ -1,4 +1,3 @@
-install-files/autostart                            etc/xdg
 install-files/goldendict-dictionaries/*            usr/share/wasta-resources/.goldendict-dictionaries
 install-files/gschema-overrides/*                  usr/share/glib-2.0/schemas
 #install-files/kmfl                                 usr/share

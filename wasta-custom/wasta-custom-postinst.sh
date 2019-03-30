@@ -211,6 +211,20 @@ locale-gen pt_PT.UTF-8
 update-locale LANG="pt_PT.UTF-8"
 update-locale LANGUAGE="pt_PT"
 update-locale LC_ALL="pt_PT.UTF-8"
+# pt_BR needed for English Int'l keyboard to have 'c = ç instead of ć
+update-locale LC_CTYPE="pt_BR.UTF-8"
+
+# ------------------------------------------------------------------------------
+# Ensure LC_CTYPE creates 'c = ç instead of ć
+# ------------------------------------------------------------------------------
+LC_CTYPE_FOUND=$(grep LC_CTYPE /etc/environment)
+if [ "$LC_CTYPE_FOUND" == "" ];
+then
+    echo
+    echo "*** Ensuring Eng Int'l keyboard compatibilty"
+    echo
+    sed -i -e '$a LC_CTYPE="pt_BR.UTF-8"' /etc/environment
+fi
 
 # ------------------------------------------------------------------------------
 # Finished

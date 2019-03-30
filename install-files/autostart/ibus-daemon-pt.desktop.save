@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Ibus 
-Comment=Set LC_CTYPE to Portguese for Eng Int'l compatibility
-Icon=ibus-preferences
-Exec=LC_CTYPE=sh -c 'LC_CTYPE=pt_BR.UTF-8 ibus-daemon -xrd'
-Terminal=false
-StartupNotify=false
-
