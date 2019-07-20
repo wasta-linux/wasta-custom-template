@@ -105,7 +105,7 @@ Acquire::Languages \"none\";
 EOF
 fi
 
-# UNTESTED: disable downloading of DEP-11 files. 
+# UNTESTED: disable downloading of DEP-11 files.
 #   alternative is apt purge appstream - then you lose snaps/ubuntu-software
 dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/apt/apt.conf.d/50appstream
 
