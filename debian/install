@@ -1,3 +1,4 @@
+install-files/apt/*                                etc/apt
 #install-files/gschema-overrides/*                  usr/share/glib-2.0/schemas
 #install-files/kmfl                                 usr/share
 #install-files/libreoffice/extensions               usr/lib/libreoffice/share
