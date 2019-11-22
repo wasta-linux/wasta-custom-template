@@ -1,14 +1,15 @@
-Source: wasta-custom-template
+Source: wasta-custom-bt
 Section: utils
 Priority: optional
 Maintainer: Rik Shaw <rikshaw76@gmail.com>
 Build-Depends: debhelper (>= 9.0.0)
-Standards-Version: 3.9.7
+Standards-Version: 4.4.0
+Homepage: https://github.com/wasta-linux/wasta-custom-template
 
-Package: wasta-custom-template
+Package: wasta-custom-bt
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends:
+Recommends: adaptit, audacity, ibus-kmfl, fieldworks, keyman, kmfl-keyboard-ipa, paratext-9.0, paratext-8.0, pathway, wasta-sword-modules, xiphos
 Suggests:
-Description: Wasta-Linux BRANCH_ID customization
- Sets up machine for Wasta-Linux BRANCH_ID use.
+Description: Wasta-Linux BT customization
+ Sets up machine for Wasta-Linux BT use.

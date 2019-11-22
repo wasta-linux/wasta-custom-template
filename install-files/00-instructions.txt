@@ -1,7 +1,6 @@
 These files will be removed when this package is uninstalled.
   -ensure debian/install has uncommented the used folders
 
-
 gschema-overrides: copy each override into the gschema-overrides folder
   -modify the post-install script so that it always compiles the schemas
   -for permanent overrides that survive this package, use wasta-custom/resources

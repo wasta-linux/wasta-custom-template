@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==============================================================================
-# wasta-custom-${BRANCH_ID}-postinst.sh
+# wasta-custom-bt-postinst.sh
 #
 #   This script is automatically run by the postinst configure step on
 #       installation of wasta-custom-${BRANCH_ID}.  It can be manually re-run, but is
@@ -9,6 +9,7 @@
 #
 #   2013-12-03 rik: initial script
 #   2017-12-27 jcl: rework - change LO extension to bundle method, not shared
+#   2019-11-22 rik: initial BT script
 #
 # ==============================================================================
 
@@ -29,9 +30,9 @@ fi
 # Initial Setup
 # ------------------------------------------------------------------------------
 
-BRANCH_ID=template
+BRANCH_ID=bt
 RESOURCE_DIR=/usr/share/wasta-custom-${BRANCH_ID}/resources
-DEBUG=""  #set to yes to enable testing helps
+DEBUG="" #set to yes to enable testing helps
 
 # ------------------------------------------------------------------------------
 # Adjust Software Sources
@@ -108,68 +109,6 @@ fi
 # UNTESTED: disable downloading of DEP-11 files.
 #   alternative is apt purge appstream - then you lose snaps/ubuntu-software
 dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/apt/apt.conf.d/50appstream
-
-# ------------------------------------------------------------------------------
-# LibreOffice PPA management
-# ------------------------------------------------------------------------------
-LO_54=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-4-*)
-LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
-if ! [ -e "${LO_6X[0]}" ] \
-&& ! [ -e "${LO_54[0]}" ] \
-&& ! [ "${REPO_SERIES}" == "bionic" ]; then
-  echo "LibreOffice 5.4 PPA not found.  Adding it..."
-
-  #key already added by wasta, so no need to use the internet with add-apt-repository
-  #add-apt-repository --yes ppa:libreoffice/libreoffice-5-4
-  cat << EOF >  $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-4-$REPO_SERIES.list
-deb http://ppa.launchpad.net/libreoffice/libreoffice-5-4/ubuntu $REPO_SERIES main
-# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-5-4/ubuntu $REPO_SERIES main
-EOF
-fi
-
-LO_60=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-0-*)
-LO_61=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-1-*)
-if [ -e "${LO_61[0]}" ]; then
-  if [ -e "${LO_60[0]}" ]; then
-    echo "   LO 6.0 PPA found - removing it."
-    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-0-"*
-  fi
-fi
-
-LO_5X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-*)
-LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
-if [ -e "${LO_6X[0]}" ]; then
-  if [ -e "${LO_5X[0]}" ]; then
-    echo "   LO 5.x PPA found - removing it."
-    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-"*
-  fi
-fi
-
-# ------------------------------------------------------------------------------
-# LibreOffice Extensions - bundle install (for all users)
-# !! Not removed if wasta-custom-${BRANCH_ID} is uninstalled !!
-#   "unopkg list --bundled" - exists since 2010
-# ------------------------------------------------------------------------------
-LO_EXTENSION_DIR=/usr/lib/libreoffice/share/extensions
-if [ -x "${LO_EXTENSION_DIR}/" ]; then
-  for EXT_FILE in "${RESOURCE_DIR}/"*.oxt ; do
-    if [ -f "${EXT_FILE}" ]; then
-      LO_EXTENSION=$(basename --suffix=.oxt ${EXT_FILE})
-      if [ -e "${LO_EXTENSION_DIR}/${LO_EXTENSION}" ]; then
-        echo "  Replacing ${LO_EXTENSION} extension"
-        rm -rf "${LO_EXTENSION_DIR}/${LO_EXTENSION}"
-      else
-        echo "  Adding ${LO_EXTENSION} extension"
-      fi
-      unzip -q -d "${LO_EXTENSION_DIR}/${LO_EXTENSION}" \
-                  "${RESOURCE_DIR}/${LO_EXTENSION}.oxt"
-    else
-      [ "$DEBUG" ] && echo "DEBUG: no .oxt files to install"
-    fi
-  done
-else
-  echo "WARNING: could not find LibreOffice install..."
-fi
 
 # ------------------------------------------------------------------------------
 # Schema overrides - set customized defaults for gnome software

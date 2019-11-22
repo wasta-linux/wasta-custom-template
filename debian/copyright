@@ -1,13 +1,13 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: wasta-custom-template
-Source: https://launchpad.net/~wasta-linux
+Upstream-Name: wasta-custom-bt
+Source: https://github.com/wasta-linux/wasta-custom-template
 
 Files: *
-Copyright: 2014 Rik Shaw <rikshaw76@gmail.com>
+Copyright: 2019 Rik Shaw <rikshaw76@gmail.com>
 License: GPL-3.0+
 
 Files: debian/*
-Copyright: 2014 Rik Shaw <rikshaw76@gmail.com>
+Copyright: 2019 Rik Shaw <rikshaw76@gmail.com>
 License: GPL-3.0+
 
 License: GPL-3.0+

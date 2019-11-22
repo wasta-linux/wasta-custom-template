@@ -1,8 +1,8 @@
-wasta-custom-template (1.0) xenial; urgency=low
+wasta-custom-bt (0.9.0) bionic; urgency=low
 
-  * Updated for 16.04 standards
+  * initial bt release
 
- -- Justin Luth <jluth@mail.com>  Tue, 26 Dec 2017 13:01:36 -0500
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 22 Nov 2019 10:03:44 +0300
 
 wasta-custom-template (0.1) precise; urgency=low
 
