@@ -1,3 +1,9 @@
+wasta-custom-bt (0.9.2) bionic; urgency=medium
+
+  * correcting postinst
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 22 Nov 2019 13:47:35 +0300
+
 wasta-custom-bt (0.9.1) bionic; urgency=medium
 
   * correcting debian/install

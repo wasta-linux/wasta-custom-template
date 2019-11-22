@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==============================================================================
-# wasta-custom-bt-postinst.sh
+# wasta-custom-postinst.sh
 #
 #   This script is automatically run by the postinst configure step on
 #       installation of wasta-custom-${BRANCH_ID}.  It can be manually re-run, but is
