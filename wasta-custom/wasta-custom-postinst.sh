@@ -116,6 +116,7 @@ LO_54=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-4-*)
 LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
 if ! [ -e "${LO_6X[0]}" ] \
 && ! [ -e "${LO_54[0]}" ] \
+&& ! [ "${REPO_SERIES}" == "focal" ] \
 && ! [ "${REPO_SERIES}" == "bionic" ]; then
   echo "LibreOffice 5.4 PPA not found.  Adding it..."
 
@@ -129,7 +130,49 @@ fi
 
 LO_60=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-0-*)
 LO_61=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-1-*)
-if [ -e "${LO_61[0]}" ]; then
+LO_62=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-2-*)
+LO_63=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-3-*)
+LO_64=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-4-*)
+LO_65=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-5-*)
+if [ -e "${LO_65[0]}" ]; then
+  if [ -e "${LO_64[0]}" ]; then
+    echo "   LO 6.4 PPA found - removing it."
+    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-4-"*
+  fi
+fi
+
+if [ -e "${LO_65[0]}" ] \
+|| [ -e "${LO_64[0]}" ]; then
+  if [ -e "${LO_63[0]}" ]; then
+    echo "   LO 6.3 PPA found - removing it."
+    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-3-"*
+  fi
+fi
+
+if [ -e "${LO_65[0]}" ] \
+|| [ -e "${LO_64[0]}" ] \
+|| [ -e "${LO_63[0]}" ]; then
+ if [ -e "${LO_62[0]}" ]; then
+    echo "   LO 6.2 PPA found - removing it."
+    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-2-"*
+  fi
+fi
+
+if [ -e "${LO_65[0]}" ] \
+|| [ -e "${LO_64[0]}" ] \
+|| [ -e "${LO_63[0]}" ] \
+|| [ -e "${LO_62[0]}" ]; then
+  if [ -e "${LO_61[0]}" ]; then
+    echo "   LO 6.1 PPA found - removing it."
+    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-1-"*
+  fi
+fi
+
+if [ -e "${LO_65[0]}" ] \
+|| [ -e "${LO_64[0]}" ] \
+|| [ -e "${LO_63[0]}" ] \
+|| [ -e "${LO_62[0]}" ] \
+|| [ -e "${LO_61[0]}" ]; then
   if [ -e "${LO_60[0]}" ]; then
     echo "   LO 6.0 PPA found - removing it."
     rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-0-"*
