@@ -51,7 +51,7 @@ case "$SERIES" in
     REPO_SERIES="xenial"
   ;;
 
-  bionic|tara)
+  bionic|tara|tessa|tina|tricia)
     #LTS 18.04-based Mint 19.x
     REPO_SERIES="bionic"
   ;;
@@ -108,6 +108,14 @@ fi
 # UNTESTED: disable downloading of DEP-11 files.
 #   alternative is apt purge appstream - then you lose snaps/ubuntu-software
 dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/apt/apt.conf.d/50appstream
+
+
+# set wasta-snap-manager's suggested update defaults
+#if [ $(which snap) ]; then
+#  snap set system refresh.metered=hold
+#  snap set system refresh.timer='sun5,02:00'
+#  snap set system refresh.retain=2
+#fi
 
 # ------------------------------------------------------------------------------
 # LibreOffice PPA management
