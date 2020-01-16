@@ -83,29 +83,12 @@ fi
 # ------------------------------------------------------------------------------
 # Disable software update checking / reduce bandwidth for apt
 # ------------------------------------------------------------------------------
-# Automatically check for updates: daily(1), week(7), two weeks(14), never(0)
-#if [ -e /etc/apt/apt.conf.d/10periodic ]; then
-#  sed -i -e '/APT::Periodic::Update-Package-Lists/ s|\".*\"|\"0\"|' \
-#      /etc/apt/apt.conf.d/10periodic
-#fi
-#if [ -e /etc/apt/apt.conf.d/20auto-upgrades ]; then
-#  sed -i -e '/APT::Periodic::Update-Package-Lists/ s|\".*\"|\"0\"|' \
-#         -e '/APT::Periodic::Unattended-Upgrade/   s|\".*\"|\"0\"|' \
-#      /etc/apt/apt.conf.d/20auto-upgrades
-#fi
-
 # Notify me of a new Ubuntu version: never, normal, lts
 if [ -e /etc/update-manager/release-upgrades ]; then
   sed -i -e 's|^Prompt=.*|Prompt=never|' /etc/update-manager/release-upgrades
 fi
 
-if ! [ -e /etc/apt/apt.conf.d/99translations ]; then
-  cat << EOF >  /etc/apt/apt.conf.d/99translations
-Acquire::Languages \"none\";
-EOF
-fi
-
-# UNTESTED: disable downloading of DEP-11 files.
+# disable downloading of DEP-11 files.
 #   alternative is apt purge appstream - then you lose snaps/ubuntu-software
 dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/apt/apt.conf.d/50appstream
 

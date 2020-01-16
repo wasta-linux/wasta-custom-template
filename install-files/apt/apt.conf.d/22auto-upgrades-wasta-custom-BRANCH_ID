@@ -1,0 +1,5 @@
+# Automatically check for updates: daily(1), week(7), two weeks(14), never(0)
+APT::Periodic::Download-Upgradeable-Packages "0";
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+Acquire::Languages "none";
