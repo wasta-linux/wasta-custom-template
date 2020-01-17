@@ -105,8 +105,10 @@ dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/ap
 # ------------------------------------------------------------------------------
 LO_54=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-4-*)
 LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
-if ! [ -e "${LO_6X[0]}" ] \
-&& ! [ -e "${LO_54[0]}" ] \
+LO_7X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-7-*)
+if ! [ -e "${LO_54[0]}" ] \
+&& ! [ -e "${LO_6X[0]}" ] \
+&& ! [ -e "${LO_7X[0]}" ] \
 && ! [ "${REPO_SERIES}" == "focal" ] \
 && ! [ "${REPO_SERIES}" == "bionic" ]; then
   echo "LibreOffice 5.4 PPA not found.  Adding it..."
@@ -124,15 +126,14 @@ LO_61=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-1-*)
 LO_62=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-2-*)
 LO_63=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-3-*)
 LO_64=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-4-*)
-LO_65=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-5-*)
-if [ -e "${LO_65[0]}" ]; then
+if [ -e "${LO_7X[0]}" ]; then
   if [ -e "${LO_64[0]}" ]; then
     echo "   LO 6.4 PPA found - removing it."
     rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-4-"*
   fi
 fi
 
-if [ -e "${LO_65[0]}" ] \
+if [ -e "${LO_7X[0]}" ] \
 || [ -e "${LO_64[0]}" ]; then
   if [ -e "${LO_63[0]}" ]; then
     echo "   LO 6.3 PPA found - removing it."
@@ -140,7 +141,7 @@ if [ -e "${LO_65[0]}" ] \
   fi
 fi
 
-if [ -e "${LO_65[0]}" ] \
+if [ -e "${LO_7X[0]}" ] \
 || [ -e "${LO_64[0]}" ] \
 || [ -e "${LO_63[0]}" ]; then
  if [ -e "${LO_62[0]}" ]; then
@@ -149,7 +150,7 @@ if [ -e "${LO_65[0]}" ] \
   fi
 fi
 
-if [ -e "${LO_65[0]}" ] \
+if [ -e "${LO_7X[0]}" ] \
 || [ -e "${LO_64[0]}" ] \
 || [ -e "${LO_63[0]}" ] \
 || [ -e "${LO_62[0]}" ]; then
@@ -159,7 +160,7 @@ if [ -e "${LO_65[0]}" ] \
   fi
 fi
 
-if [ -e "${LO_65[0]}" ] \
+if [ -e "${LO_7X[0]}" ] \
 || [ -e "${LO_64[0]}" ] \
 || [ -e "${LO_63[0]}" ] \
 || [ -e "${LO_62[0]}" ] \
