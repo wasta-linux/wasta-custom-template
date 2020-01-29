@@ -84,6 +84,7 @@ fi
 # Disable software update checking / reduce bandwidth for apt
 # ------------------------------------------------------------------------------
 # Notify me of a new Ubuntu version: never, normal, lts
+#   (note: apparently /etc/updatemanager/release-upgrades.d doesn't work)
 if [ -e /etc/update-manager/release-upgrades ]; then
   sed -i -e 's|^Prompt=.*|Prompt=never|' /etc/update-manager/release-upgrades
 fi
