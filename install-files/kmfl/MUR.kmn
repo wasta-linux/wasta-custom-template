@@ -1,0 +1,76 @@
+c Didinga Keyboard
+
+NAME "Murle"
+
+BITMAP "MUR.bmp"
+
+VERSION 6.0
+
+store(&MnemonicLayout) "1"        c This keyboard uses a mnemonic layout.
+
+begin UNICODE > use(Main)
+
+group(main) using keys
+
+c punctuation
+"<" + "'" > U+2018
+">" + "'" > U+2019
+'<' + '"' > U+201C
+'>' + '"' > U+201D
+'-' + '-' > U+2013
+'~' + '~' > U+2013
+'@' + 'c' > U+00A9
+'@' + 'C' > U+00A9
+
+c maths signs
+'+' + '-' > U+00B1
+"+" + "+" > U+00D7
+'-' + ';' > U+00F7
+'-' + ':' > U+00F7
+'_' + ':' > U+00F7
+'^' + '.' > U+2022
+
+c powers
+'^' + '0' > U+2070
+'^' + '1' > U+00B9
+'^' + '2' > U+00B2
+'^' + '3' > U+00B3
+
+c fractions
+';' + '1' > U+00BC
+';' + '2' > U+00BD
+';' + '3' > U+00BE
+';' + '8' > U+215B
+
+c Murle specific consonants
+';' + 'n' > U+014B
+':' + 'n' > U+014B
+';' + 'N' > U+014A
+':' + 'N' > U+014A
+';' + 'd' > U+1E0F
+':' + 'd' > U+1E0F
+';' + 'D' > U+1E0E
+':' + 'D' > U+1E0E
+';' + 't' > U+1E6F
+':' + 't' > U+1E6F
+';' + 'T' > U+1E6E
+':' + 'T' > U+1E6E         
+
+c Murle specific vowels
+';' + 'e' > U+025B
+':' + 'e' > U+025B
+';' + 'E' > U+0190
+':' + 'E' > U+0190
+';' + 'c' > U+0254
+':' + 'c' > U+0254
+';' + 'C' > U+0186
+':' + 'C' > U+0186
+"'" + 'a' > U+00E1
+'"' + 'a' > U+00E1
+"'" + 'A' > U+00C1
+'"' + 'A' > U+00C1
+';' + 'a' > U+00E3
+':' + 'a' > U+00E3
+';' + 'A' > U+00C3
+':' + 'A' > U+00C3
+
