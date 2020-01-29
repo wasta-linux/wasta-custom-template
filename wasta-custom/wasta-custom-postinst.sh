@@ -29,9 +29,9 @@ fi
 # Initial Setup
 # ------------------------------------------------------------------------------
 
-BRANCH_ID=template
+BRANCH_ID=ssd
 RESOURCE_DIR=/usr/share/wasta-custom-${BRANCH_ID}/resources
-DEBUG=""  #set to yes to enable testing helps
+DEBUG="YES"  #set to yes to enable testing helps
 
 # ------------------------------------------------------------------------------
 # Adjust Software Sources
@@ -105,11 +105,11 @@ dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/ap
 
 
 # set wasta-snap-manager's suggested update defaults
-#if [ $(which snap) ]; then
-#  snap set system refresh.metered=hold
-#  snap set system refresh.timer='sun5,02:00'
-#  snap set system refresh.retain=2
-#fi
+if [ $(which snap) ]; then
+  snap set system refresh.metered=hold
+  snap set system refresh.timer='sun5,02:00'
+  snap set system refresh.retain=2
+fi
 
 # ------------------------------------------------------------------------------
 # LibreOffice PPA management
@@ -229,7 +229,7 @@ fi
 # Install fonts
 # !! Not removed if wasta-custom-${BRANCH_ID} is uninstalled !!
 # ------------------------------------------------------------------------------
-REBUILD_CACHE=NO
+REBUILD_CACHE=YES
 TTF=(${RESOURCE_DIR}/*.ttf)
 if [ -e "${TTF[0]}" ]; then
   echo && echo "installing extra fonts..."

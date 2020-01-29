@@ -12,14 +12,15 @@
 # ==============================================================================
 
 [org.nemo.preferences]
-#enable-delete = true
+default-folder-viewer = 'list-view'
+enable-delete = true
 
 [org.cinnamon.settings-daemon.peripherals.touchpad]
-#tap-to-click = false
+tap-to-click = false
 
 [org.freedesktop.ibus.general]
-#preload-engines = ['xkb:us::eng', '/usr/share/kmfl/GE.kmn']
-#use-system-keyboard-layout = true
+preload-engines = ['xkb:us::eng', '/usr/share/kmfl/GE.kmn']
+use-system-keyboard-layout = true
 
 [org.gtk.Settings.FileChooser]
 sort-directories-first = true
@@ -27,3 +28,9 @@ sort-directories-first = true
 #Other things already generally do apt updates. gnome-software shouldn't do it separately
 [org.gnome.software]
 download-updates = false
+
+
+#Put branch added stuff below here to minimize rebase conflicts
+[org.gnome.shell]
+favorite-apps = ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'thunderbird.desktop']
+

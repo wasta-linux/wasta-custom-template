@@ -1,11 +1,13 @@
-#install-files/apt/*                                etc/apt
-#install-files/gschema-overrides/*                  usr/share/glib-2.0/schemas
-#install-files/kmfl                                 usr/share
-#install-files/libreoffice/extensions               usr/lib/libreoffice/share
-#install-files/polkit-1/*.pkla                      etc/polkit-1/localauthority/50-local.d
-#install-files/polkit-1/*.rules                     etc/polkit-1/rules.d
-#install-files/truetype/*                           usr/share/fonts/truetype/BRANCH_ID
+install-files/apt/*                                etc/apt
+install-files/gschema-overrides/*                  usr/share/glib-2.0/schemas
+install-files/kmfl                                 usr/share
+install-files/libreoffice/extensions               usr/lib/libreoffice/share
+install-files/polkit-1/*.pkla                      etc/polkit-1/localauthority/50-local.d
+install-files/polkit-1/*.rules                     etc/polkit-1/rules.d
+install-files/truetype/*                           usr/share/fonts/truetype/BRANCH_ID
 #install-files/wasta-resources                      usr/share
-wasta-custom/*                                     usr/share/wasta-custom-BRANCH_ID
+wasta-custom/*                                     usr/share/wasta-custom-ssd
 
 #put branch custom stuff after the template stuff, to avoid unnecessary git conflicts
+install-files/lightdm				   etc
+install-files/skel				   etc

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FreeFileSync XmlFormat="4" XmlType="GLOBAL">
+    <General>
+        <Language Name="English (U.S.)"/>
+        <FailSafeFileCopy Enabled="true"/>
+        <CopyLockedFiles Enabled="false"/>
+        <CopyFilePermissions Enabled="false"/>
+        <AutomaticRetry Count="0" Delay="5"/>
+        <FileTimeTolerance Seconds="2"/>
+        <FolderAccessTimeout Seconds="20"/>
+        <RunWithBackgroundPriority Enabled="false"/>
+        <LockDirectoriesDuringSync Enabled="true"/>
+        <VerifyCopiedFiles Enabled="false"/>
+        <LastSyncsLogSizeMax Bytes="100000"/>
+        <NotificationSound CompareFinished="" SyncFinished="gong.wav"/>
+        <OptionalDialogs>
+            <WarnUnresolvedConflicts Enabled="true"/>
+            <WarnNotEnoughDiskSpace Enabled="true"/>
+            <WarnSignificantDifference Enabled="true"/>
+            <WarnRecycleBinNotAvailable Enabled="true"/>
+            <WarnInputFieldEmpty Enabled="true"/>
+            <WarnDatabaseError Enabled="true"/>
+            <WarnDependentFolders Enabled="true"/>
+            <WarnFolderPairRaceCondition Enabled="true"/>
+            <WarnDirectoryLockFailed Enabled="true"/>
+            <ConfirmSaveConfig Enabled="true"/>
+            <ConfirmStartSync Enabled="true"/>
+            <ConfirmExternalCommandMassInvoke Enabled="true"/>
+        </OptionalDialogs>
+    </General>
+    <Gui>
+        <MainDialog Height="549" Maximized="false" PosX="233" PosY="71" Width="900">
+            <ManualCopyTo KeepRelativePaths="false" OverwriteIfExists="false">
+                <FolderHistory LastUsedPath="" MaxSize="15"/>
+            </ManualCopyTo>
+            <ManualDeletion UseRecycler="true"/>
+            <CaseSensitiveSearch Enabled="false"/>
+            <FolderPairsVisible Max="6"/>
+            <OverviewPanel ShowPercentage="true" SortAscending="false" SortByColumn="Bytes">
+                <Columns>
+                    <Item Stretch="1" Type="Tree" Visible="true" Width="-120"/>
+                    <Item Stretch="0" Type="Count" Visible="true" Width="60"/>
+                    <Item Stretch="0" Type="Bytes" Visible="true" Width="60"/>
+                </Columns>
+            </OverviewPanel>
+            <CenterPanel IconSize="Small" SashOffset="0" ShowIcons="true">
+                <ColumnsLeft PathFormat="Relative">
+                    <Item Stretch="1" Type="Path" Visible="true" Width="-80"/>
+                    <Item Stretch="0" Type="Date" Visible="false" Width="112"/>
+                    <Item Stretch="0" Type="Size" Visible="true" Width="80"/>
+                    <Item Stretch="0" Type="Ext" Visible="false" Width="60"/>
+                </ColumnsLeft>
+                <ColumnsRight PathFormat="Relative">
+                    <Item Stretch="1" Type="Path" Visible="true" Width="-80"/>
+                    <Item Stretch="0" Type="Date" Visible="false" Width="112"/>
+                    <Item Stretch="0" Type="Size" Visible="true" Width="80"/>
+                    <Item Stretch="0" Type="Ext" Visible="false" Width="60"/>
+                </ColumnsRight>
+            </CenterPanel>
+            <DefaultViewFilter>
+                <Shared Conflict="true" Equal="false" Excluded="false"/>
+                <CategoryView Different="true" LeftNewer="true" LeftOnly="true" RightNewer="true" RightOnly="true"/>
+                <ActionView CreateLeft="true" CreateRight="true" DeleteLeft="true" DeleteRight="true" DoNothing="true" UpdateLeft="true" UpdateRight="true"/>
+            </DefaultViewFilter>
+            <Perspective5>layout2|name=CenterPanel;caption=;state=256;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=900;besth=183;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=TopPanel;caption=Main Bar;state=2099708;dir=1;layer=2;row=1;pos=0;prop=100000;bestw=427;besth=58;minw=180;minh=58;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ProgressPanel;caption=;state=2097662;dir=1;layer=2;row=2;pos=0;prop=100000;bestw=327;besth=92;minw=200;minh=92;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=FoldersPanel;caption=Folder Pairs;state=2099708;dir=1;layer=2;row=3;pos=0;prop=100000;bestw=900;besth=52;minw=-1;minh=52;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SearchPanel;caption=Find;state=2099710;dir=3;layer=2;row=2;pos=0;prop=100000;bestw=407;besth=33;minw=200;minh=25;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ViewFilterPanel;caption=View Settings;state=2099708;dir=3;layer=2;row=1;pos=0;prop=100000;bestw=900;besth=51;minw=82;minh=51;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ConfigPanel;caption=Configuration;state=2099196;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=265;besth=59;minw=42;minh=59;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=OverviewPanel;caption=Overview;state=2099196;dir=4;layer=3;row=0;pos=1;prop=100000;bestw=900;besth=183;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=270|dock_size(1,2,1)=58|dock_size(1,2,3)=52|dock_size(3,2,1)=51|dock_size(4,3,0)=302|</Perspective5>
+        </MainDialog>
+        <DefaultExclusionFilter>
+            <Item>/.Trash-*/</Item>
+            <Item>/.recycle/</Item>
+        </DefaultExclusionFilter>
+        <LastUsedConfig>
+            <Item>/home/user/.FreeFileSync/LastRun.ffs_gui</Item>
+        </LastUsedConfig>
+        <ConfigHistory MaxSize="100" ScrollPos="0">
+            <Item>/home/user/.FreeFileSync/LastRun.ffs_gui</Item>
+        </ConfigHistory>
+        <FolderHistoryLeft MaxSize="15"/>
+        <FolderHistoryRight/>
+        <OnCompletionHistory MaxSize="8"/>
+        <ExternalApps>
+            <Item>
+                <one>Browse directory</one>
+                <two>xdg-open "%folder_path%"</two>
+            </Item>
+            <Item>
+                <one>Open with default application</one>
+                <two>xdg-open "%local_path%"</two>
+            </Item>
+        </ExternalApps>
+	<LastOnlineCheck>62728</LastOnlineCheck> <!--62728 == never check-->
+        <LastOnlineVersion/>
+        <LastOnlineChanges/>
+    </Gui>
+</FreeFileSync>

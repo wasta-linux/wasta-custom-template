@@ -1,14 +1,16 @@
-Source: wasta-custom-BRANCH_ID
+Source: wasta-custom-ssd
 Section: utils
 Priority: optional
-Maintainer: Rik Shaw <rikshaw76@gmail.com>
+Maintainer: Justin Luth <justin_luth@sil.org>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.7
 
-Package: wasta-custom-BRANCH_ID
+Package: wasta-custom-ssd
 Architecture: all
-Depends: ${misc:Depends}
+Depends: dconf-gsettings-backend | gsettings-backend, ${misc:Depends}
 Recommends:
 Suggests:
-Description: Wasta-Linux BRANCH_ID customization
- Sets up machine for Wasta-Linux BRANCH_ID use.
+Conflicts: gnome-software
+Essential: yes
+Description: Wasta-Linux SSG customization
+ Sets up machine for Wasta-Linux SSG use.
