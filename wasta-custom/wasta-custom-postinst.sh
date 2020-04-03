@@ -56,6 +56,11 @@ case "$SERIES" in
     REPO_SERIES="bionic"
   ;;
 
+  focal|Ulyana)
+    #LTS 20.04-based Mint 20.x
+    REPO_SERIES="focal"
+  ;;
+
   *)
     # Don't know the series, just go with what is reported
     REPO_SERIES=$SERIES
@@ -84,7 +89,7 @@ fi
 # Disable software update checking / reduce bandwidth for apt
 # ------------------------------------------------------------------------------
 # Notify me of a new Ubuntu version: never, normal, lts
-#   (note: apparently /etc/updatemanager/release-upgrades.d doesn't work)
+#   (note: apparently /etc/update-manager/release-upgrades.d doesn't work)
 if [ -e /etc/update-manager/release-upgrades ]; then
   sed -i -e 's|^Prompt=.*|Prompt=never|' /etc/update-manager/release-upgrades
 fi
