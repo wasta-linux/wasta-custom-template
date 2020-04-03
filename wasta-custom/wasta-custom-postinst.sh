@@ -56,7 +56,7 @@ case "$SERIES" in
     REPO_SERIES="bionic"
   ;;
 
-  focal|Ulyana)
+  focal|ulyana)
     #LTS 20.04-based Mint 20.x
     REPO_SERIES="focal"
   ;;
