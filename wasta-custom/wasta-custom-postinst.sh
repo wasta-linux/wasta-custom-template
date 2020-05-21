@@ -4,8 +4,8 @@
 # wasta-custom-${BRANCH_ID}-postinst.sh
 #
 #   This script is automatically run by the postinst configure step on
-#       installation of wasta-custom-${BRANCH_ID}.  It can be manually re-run, but is
-#       only intended to be run at package installation.
+#       installation of wasta-custom-${BRANCH_ID}.  It can be manually re-run,
+#       but is only intended to be run at package installation.
 #
 #   2013-12-03 rik: initial script
 #   2017-12-27 jcl: rework - change LO extension to bundle method, not shared

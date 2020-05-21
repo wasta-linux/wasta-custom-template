@@ -23,3 +23,6 @@
 
 [org.gtk.Settings.FileChooser]
 sort-directories-first = true
+
+[org.gnome.software]
+download-updates = false
