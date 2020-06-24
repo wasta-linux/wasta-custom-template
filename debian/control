@@ -1,13 +1,13 @@
-Source: wasta-custom-template
+Source: wasta-custom-BRANCH_ID
 Section: utils
 Priority: optional
 Maintainer: Rik Shaw <rikshaw76@gmail.com>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.7
 
-Package: wasta-custom-template
+Package: wasta-custom-BRANCH_ID
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}
 Recommends:
 Suggests:
 Description: Wasta-Linux BRANCH_ID customization

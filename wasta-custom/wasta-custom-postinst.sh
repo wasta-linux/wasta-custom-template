@@ -109,23 +109,8 @@ dpkg-divert --local --rename --divert '/etc/apt/apt.conf.d/#50appstream' /etc/ap
 # ------------------------------------------------------------------------------
 # LibreOffice PPA management
 # ------------------------------------------------------------------------------
-LO_54=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-4-*)
 LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
 LO_7X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-7-*)
-if ! [ -e "${LO_54[0]}" ] \
-&& ! [ -e "${LO_6X[0]}" ] \
-&& ! [ -e "${LO_7X[0]}" ] \
-&& ! [ "${REPO_SERIES}" == "focal" ] \
-&& ! [ "${REPO_SERIES}" == "bionic" ]; then
-  echo "LibreOffice 5.4 PPA not found.  Adding it..."
-
-  #key already added by wasta, so no need to use the internet with add-apt-repository
-  #add-apt-repository --yes ppa:libreoffice/libreoffice-5-4
-  cat << EOF >  $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-4-$REPO_SERIES.list
-deb http://ppa.launchpad.net/libreoffice/libreoffice-5-4/ubuntu $REPO_SERIES main
-# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-5-4/ubuntu $REPO_SERIES main
-EOF
-fi
 
 LO_60=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-0-*)
 LO_61=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-1-*)
@@ -174,15 +159,6 @@ if [ -e "${LO_7X[0]}" ] \
   if [ -e "${LO_60[0]}" ]; then
     echo "   LO 6.0 PPA found - removing it."
     rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-0-"*
-  fi
-fi
-
-LO_5X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-*)
-LO_6X=(${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-6-*)
-if [ -e "${LO_6X[0]}" ]; then
-  if [ -e "${LO_5X[0]}" ]; then
-    echo "   LO 5.x PPA found - removing it."
-    rm "${APT_SOURCES_D}/libreoffice-ubuntu-libreoffice-5-"*
   fi
 fi
 
