@@ -1,0 +1,34 @@
+		<engine>
+			<name>xkb:mx_enus::eng</name>
+			<language>eng</language>
+			<license>GPL</license>
+			<author>Peter Wulfing &lt;jtb_center_mexico@sil.org&gt;</author>
+			<layout>mx_enus</layout>
+			<longname>English (MXB AltGr dead keys)</longname>
+			<description>US English (MXB AltGr dead keys)</description>
+                        <icon>ibus-keyboard</icon>
+			<rank>99</rank>
+		</engine>
+		<engine>
+			<name>xkb:mx_es1mx::spa</name>
+			<language>spa</language>
+			<license>GPL</license>
+			<author>Peter Wulfing &lt;jtb_center_mexico@sil.org&gt;</author>
+			<layout>mx_es1mx</layout>
+			<longname>MXB español latinoamericano (tipo 1)</longname>
+			<description>español latinoamericano (tipo 1 MXB)</description>
+                        <icon>ibus-keyboard</icon>
+			<rank>99</rank>
+		</engine>
+		<engine>
+			<name>xkb:mx_es2mx::spa</name>
+			<language>spa</language>
+			<license>GPL</license>
+			<author>Peter Wulfing &lt;jtb_center_mexico@sil.org&gt;</author>
+			<layout>mx_es2mx</layout>
+			<longname>MXB español europeo (tipo 2)</longname>
+			<description>español de españa (tipo 2 MXB)</description>
+                        <icon>ibus-keyboard</icon>
+			<rank>99</rank>
+		</engine>
+	</engines>

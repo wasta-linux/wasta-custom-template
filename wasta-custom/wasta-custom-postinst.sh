@@ -9,6 +9,7 @@
 #
 #   2013-12-03 rik: initial script
 #   2017-12-27 jcl: rework - change LO extension to bundle method, not shared
+#   2020-06-24 jcl: transfer Mexico's mxb scripts into this template
 #
 # ==============================================================================
 
@@ -29,7 +30,7 @@ fi
 # Initial Setup
 # ------------------------------------------------------------------------------
 
-BRANCH_ID=template
+BRANCH_ID=mxb
 RESOURCE_DIR=/usr/share/wasta-custom-${BRANCH_ID}/resources
 DEBUG=""  #set to yes to enable testing helps
 
@@ -224,7 +225,7 @@ fi
 # Install fonts
 # !! Not removed if wasta-custom-${BRANCH_ID} is uninstalled !!
 # ------------------------------------------------------------------------------
-REBUILD_CACHE=NO
+REBUILD_CACHE=YES
 TTF=(${RESOURCE_DIR}/*.ttf)
 if [ -e "${TTF[0]}" ]; then
   echo && echo "installing extra fonts..."
@@ -245,7 +246,7 @@ fi
 # ------------------------------------------------------------------------------
 # Note: This sets /etc/papersize.  However, many apps do not look at this
 #   location, but instead maintain their own settings for paper size :-(
-paperconfig -p a4
+#paperconfig -p a4
 
 # ------------------------------------------------------------------------------
 # Change system-wide locale settings
@@ -275,6 +276,13 @@ if [ $? == 0 ] \
     /etc/init.d/ssh restart
   fi
 fi
+
+
+# ------------------------------------------------------------------------------
+# Mexico branch specific customizations
+# ------------------------------------------------------------------------------
+# keyboard install script
+. /usr/share/wasta-custom-mxb/installmxbkb.sh
 
 # ------------------------------------------------------------------------------
 # Finished

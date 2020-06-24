@@ -19,7 +19,8 @@
 
 [org.freedesktop.ibus.general]
 #preload-engines = ['xkb:us::eng', '/usr/share/kmfl/GE.kmn']
-#use-system-keyboard-layout = true
+use-system-keyboard-layout = false
+xkb-latin-layouts = ['ara', 'bg', 'cz', 'dev', 'gr', 'gur', 'in', 'jp(kana)', 'mal', 'mkd', 'ru', 'ua', 'mx_enus', 'mx_es1mx', 'mx_es2mx' ]
 
 [org.gtk.Settings.FileChooser]
 sort-directories-first = true

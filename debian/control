@@ -1,14 +1,14 @@
-Source: wasta-custom-BRANCH_ID
+Source: wasta-custom-mxb
 Section: utils
 Priority: optional
 Maintainer: Rik Shaw <rikshaw76@gmail.com>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.7
 
-Package: wasta-custom-BRANCH_ID
+Package: wasta-custom-mxb
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ibus, ${misc:Depends}
 Recommends:
 Suggests:
-Description: Wasta-Linux BRANCH_ID customization
- Sets up machine for Wasta-Linux BRANCH_ID use.
+Description: Wasta-Linux mxb customization
+ Sets up machine for Wasta-Linux mxb use.
