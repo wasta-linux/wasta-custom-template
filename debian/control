@@ -8,8 +8,8 @@ Homepage: https://github.com/wasta-linux/wasta-custom-template
 
 Package: wasta-custom-bt
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: adaptit, audacity, ibus-kmfl, fieldworks, keyman, kmfl-keyboard-ipa, paratext-9.0, paratext-8.0, pathway, wasta-sword-modules, xiphos
+Depends: ${misc:Depends}
+Recommends: adaptit, art-of-reading3, audacity, bloom, ibus-kmfl, fieldworks, keyman, kmfl-keyboard-ipa, paratext-9.0, pathway, scripture-app-builder, siltranscribe, wasta-sword-modules, xiphos
 Suggests:
 Description: Wasta-Linux BT customization
  Sets up machine for Wasta-Linux BT use.
