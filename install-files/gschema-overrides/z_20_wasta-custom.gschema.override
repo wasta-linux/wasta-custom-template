@@ -24,6 +24,6 @@
 [org.gtk.Settings.FileChooser]
 sort-directories-first = true
 
-#Other things already generally do apt upgrades. gnome-software shouldn't do it separately
+#Other things already generally do apt updates. gnome-software shouldn't do it separately
 [org.gnome.software]
 download-updates = false

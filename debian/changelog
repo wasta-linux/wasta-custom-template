@@ -1,3 +1,9 @@
+wasta-custom-template (1.1) noble; urgency=medium
+
+  * recognize Mint 22.0 wilma and 21.x
+
+ -- Justin Luth <jluth@mail.com>  Wed, 31 Jan 2024 19:28:09 -0500
+
 wasta-custom-template (1.0) xenial; urgency=low
 
   * Updated for 16.04 standards

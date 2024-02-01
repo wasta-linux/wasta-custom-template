@@ -61,9 +61,14 @@ case "$SERIES" in
     REPO_SERIES="focal"
   ;;
 
-  jammy|vanessa|vera|victoria)
+  jammy|vanessa|vera|victoria|virginia)
     #LTS 22.04-based Mint 21.x
     REPO_SERIES="jammy"
+  ;;
+
+  noble|wilma)
+    #LTS 24.04-based Mint 22.x
+    REPO_SERIES="noble"
   ;;
 
   *)
