@@ -66,7 +66,7 @@ case "$SERIES" in
     REPO_SERIES="jammy"
   ;;
 
-  noble|wilma)
+  noble|wilma|xia)
     #LTS 24.04-based Mint 22.x
     REPO_SERIES="noble"
   ;;
