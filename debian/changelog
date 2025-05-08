@@ -1,3 +1,9 @@
+wasta-custom-template (1.3) noble; urgency=medium
+
+  * ecognize Mint 22.2 zara
+
+ -- Justin Luth <jluth@mail.com>  Thu, 08 May 2025 19:34:21 -0400
+
 wasta-custom-template (1.2) noble; urgency=medium
 
   * recognize Mint 22.1 xia
